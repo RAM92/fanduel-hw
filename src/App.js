@@ -34,6 +34,10 @@ class App extends React.Component {
     });
   }
 
+  selectHigher(player) {
+    // todo
+  }
+
   render () {
     return !this.state.isLoaded ? (<div>Loading...</div>) :
     (
@@ -42,6 +46,9 @@ class App extends React.Component {
         <GuessCount value={123} />
         <div className="players">
           <PlayerPreview value={this.state.players[this.state.playerAOffset]}/>
+          <div className="v">
+            <h1>V</h1>
+          </div>
           <PlayerPreview value={this.state.players[this.state.playerBOffset]}/>
         </div>
         <button onClick={() => this.loadNewPlayers()}>Load new</button>

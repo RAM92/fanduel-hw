@@ -20,3 +20,12 @@
 .App-link {
   color: #09d3ac;
 }
+
+.players {
+  display: flex
+}
+
+.players > * {
+  flex-grow: 1;
+  text-align: center;
+}

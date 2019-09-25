@@ -3,11 +3,11 @@ import React from 'react';
 export default class PlayerPreview extends React.Component {
     render () {
         return (
-            <>
-            <img src={this.props.value.images.default.url}></img>
+            <div>
+            <img style={{width: this.props.value.images.default.width, height: this.props.value.images.default.height}} src={this.props.value.images.default.url}></img>
             <div>{this.props.value.first_name} {this.props.value.last_name}</div>
-            <button>Select higher scpre</button>
-            </>
+            <button>Select higher score</button>
+            </div>
         )
     }
 }
