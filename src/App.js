@@ -11,7 +11,7 @@ class App extends React.Component {
       isLoaded: false,
       players: [],
       playerAOffset: 0,
-      playerBOffset: 1
+      playerBOffset: 1,
     };
   }
 
@@ -28,18 +28,12 @@ class App extends React.Component {
 
   loadNewPlayers() {
     const { playerAOffset, playerBOffset} = this.state
-      this.setState({
-        playerAOffset: playerAOffset + 2,
-        playerBOffset: playerBOffset + 2,
-      })
+    this.setState({
+      playerAOffset: playerAOffset + 2,
+      playerBOffset: playerBOffset + 2,
+    });
   }
 
-  playerA () {
-      return this.state.players[this.state.playerAOffset];
-  }
-  playerB () {
-    return this.state.players[this.state.playerBOffset];
-  }
   render () {
     return !this.state.isLoaded ? (<div>Loading...</div>) :
     (
@@ -47,9 +41,10 @@ class App extends React.Component {
         Select player with highest FPPG
         <GuessCount value={123} />
         <div className="players">
-          <PlayerPreview value={this.playerA()}/>
-          <PlayerPreview value={this.playerB()}/>
+          <PlayerPreview value={this.state.players[this.state.playerAOffset]}/>
+          <PlayerPreview value={this.state.players[this.state.playerBOffset]}/>
         </div>
+        <button onClick={() => this.loadNewPlayers()}>Load new</button>
       </div>
     );
   }
