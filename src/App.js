@@ -1,6 +1,6 @@
 import React from 'react';
 import GuessCount from './GuessCount'
-import PlayerPreview from './Player'
+import PlayerPreview from './PlayerPreview'
 import './App.css';
 
 class App extends React.Component {
@@ -46,7 +46,7 @@ class App extends React.Component {
       <div className="App">
         Select player with highest FPPG
         <GuessCount value={123} />
-        <div>
+        <div className="players">
           <PlayerPreview value={this.playerA()}/>
           <PlayerPreview value={this.playerB()}/>
         </div>
