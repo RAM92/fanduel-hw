@@ -38,18 +38,22 @@ class App extends React.Component {
     // todo
   }
 
+  selectPlayer(player) {
+    debugger
+  }
+
   render () {
     return !this.state.isLoaded ? (<div>Loading...</div>) :
     (
       <div className="App">
         Select player with highest FPPG
-        <GuessCount value={123} />
+        <GuessCount total={123} correct={50} />
         <div className="players">
-          <PlayerPreview value={this.state.players[this.state.playerAOffset]}/>
+          <PlayerPreview onSelect={() => this.selectPlayer(0)} value={this.state.players[this.state.playerAOffset]}/>
           <div className="v">
             <h1>V</h1>
           </div>
-          <PlayerPreview value={this.state.players[this.state.playerBOffset]}/>
+          <PlayerPreview onSelect={() => this.selectPlayer(1)} value={this.state.players[this.state.playerBOffset]}/>
         </div>
         <button onClick={() => this.loadNewPlayers()}>Load new</button>
       </div>
