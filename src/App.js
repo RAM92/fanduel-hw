@@ -21,25 +21,35 @@ class App extends React.Component {
     .then(data => {
       this.setState({
         players: data.players,
+      });
+      this.loadPlayers();
+
+      this.setState({
         isLoaded: true
       });
     });
   }
 
+  loadPlayers() {
+    this.setState({
+      playerA: this.state.players[this.state.playerAOffset],
+      playerB: this.state.players[this.state.playerBOffset]
+    });
+  }
+
   loadNewPlayers() {
-    const { playerAOffset, playerBOffset} = this.state
+    const { playerAOffset, playerBOffset} = this.state;
     this.setState({
       playerAOffset: playerAOffset + 2,
       playerBOffset: playerBOffset + 2,
     });
+    this.loadPlayers();
   }
 
-  selectHigher(player) {
-    // todo
-  }
-
-  selectPlayer(player) {
-    debugger
+  selectPlayer(higherPlayer, lowerPlayer) {
+    if (higherPlayer.fppg > lowerPlayer.fppg) {
+      console.log('You win this round!')
+    }
   }
 
   render () {
@@ -49,11 +59,11 @@ class App extends React.Component {
         Select player with highest FPPG
         <GuessCount total={123} correct={50} />
         <div className="players">
-          <PlayerPreview onSelect={() => this.selectPlayer(0)} value={this.state.players[this.state.playerAOffset]}/>
+          <PlayerPreview className="player" onSelect={() => this.selectPlayer(this.state.playerA, this.state.playerB)} value={this.state.playerA}/>
           <div className="v">
             <h1>V</h1>
           </div>
-          <PlayerPreview onSelect={() => this.selectPlayer(1)} value={this.state.players[this.state.playerBOffset]}/>
+          <PlayerPreview className="player" onSelect={() => this.selectPlayer(this.state.playerB, this.state.playerA)} value={this.state.playerB}/>
         </div>
         <button onClick={() => this.loadNewPlayers()}>Load new</button>
       </div>

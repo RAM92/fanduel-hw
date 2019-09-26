@@ -30,3 +30,7 @@
   flex-grow: 1;
   text-align: center;
 }
+
+.players > .player::hover {
+  background-color: white;
+}
