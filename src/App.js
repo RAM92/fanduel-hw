@@ -53,7 +53,7 @@ class App extends React.Component {
 
     if (higherPlayer.fppg > lowerPlayer.fppg) {
       console.log('You win this round!')
-      this.setState({ successfulAttempts: this.state.successfulAttempts + 1})
+      this.setState(state => ({ successfulAttempts: state.successfulAttempts + 1}))
     } else {
       console.log('You lose this round!')
     }
