@@ -12,6 +12,8 @@ class App extends React.Component {
       players: [],
       playerAOffset: 0,
       playerBOffset: 1,
+      attempts: 0,
+      successfulAttempts: 0
     };
   }
 
@@ -47,9 +49,16 @@ class App extends React.Component {
   }
 
   selectPlayer(higherPlayer, lowerPlayer) {
+    this.setState(state => ({ attempts: state.attempts + 1 }))
+
     if (higherPlayer.fppg > lowerPlayer.fppg) {
       console.log('You win this round!')
+      this.setState({ successfulAttempts: this.state.successfulAttempts + 1})
+    } else {
+      console.log('You lose this round!')
     }
+
+    this.loadNewPlayers();
   }
 
   render () {
@@ -57,7 +66,7 @@ class App extends React.Component {
     (
       <div className="App">
         Select player with highest FPPG
-        <GuessCount total={123} correct={50} />
+        <GuessCount total={this.state.attempts} correct={this.state.successfulAttempts} />
         <div className="players">
           <PlayerPreview className="player" onSelect={() => this.selectPlayer(this.state.playerA, this.state.playerB)} value={this.state.playerA}/>
           <div className="v">
