@@ -34,15 +34,16 @@ class App extends React.Component {
     this.setState(({ playerAOffset, playerBOffset, players}) => ({
       playerAOffset: playerAOffset + 2,
       playerBOffset: playerBOffset + 2,
-      playerA: players[playerAOffset + 2],
-      playerB: players[playerBOffset + 2],
+      playerA: players[(playerAOffset + 2) % players.length],
+      playerB: players[(playerBOffset + 2) % players.length],
     }));
   }
 
   selectPlayer(guessHigherPlayer, guessLowerPlayer) {
     this.setState(state => ({ attempts: state.attempts + 1 }))
 
-    if (guessHigherPlayer.fppg > guessLowerPlayer.fppg) {
+    const userWon = guessHigherPlayer.fppg > guessLowerPlayer.fppg;
+    if (userWon) {
       console.log('User won this round!') // todo: real logging in places like this
       this.setState(state => ({ successfulAttempts: state.successfulAttempts + 1}))
     } else {
