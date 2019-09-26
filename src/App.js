@@ -21,41 +21,32 @@ class App extends React.Component {
     fetch('/Player.json')
     .then(response => response.json())
     .then(data => {
-      this.setState({
+      this.setState(state => ({
         players: data.players,
-      });
-      this.loadPlayers();
-
-      this.setState({
+        playerA: data.players[state.playerAOffset],
+        playerB: data.players[state.playerBOffset],
         isLoaded: true
-      });
-    });
-  }
-
-  loadPlayers() {
-    this.setState({
-      playerA: this.state.players[this.state.playerAOffset],
-      playerB: this.state.players[this.state.playerBOffset]
+      }));
     });
   }
 
   loadNewPlayers() {
-    const { playerAOffset, playerBOffset} = this.state;
-    this.setState({
+    this.setState(({ playerAOffset, playerBOffset, players}) => ({
       playerAOffset: playerAOffset + 2,
       playerBOffset: playerBOffset + 2,
-    });
-    this.loadPlayers();
+      playerA: players[playerAOffset + 2],
+      playerB: players[playerBOffset + 2],
+    }));
   }
 
-  selectPlayer(higherPlayer, lowerPlayer) {
+  selectPlayer(guessHigherPlayer, guessLowerPlayer) {
     this.setState(state => ({ attempts: state.attempts + 1 }))
 
-    if (higherPlayer.fppg > lowerPlayer.fppg) {
-      console.log('You win this round!')
+    if (guessHigherPlayer.fppg > guessLowerPlayer.fppg) {
+      console.log('User won this round!') // todo: real logging in places like this
       this.setState(state => ({ successfulAttempts: state.successfulAttempts + 1}))
     } else {
-      console.log('You lose this round!')
+      console.log('User lost this round!')
     }
 
     this.loadNewPlayers();
