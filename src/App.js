@@ -60,11 +60,11 @@ class App extends React.Component {
         Select player with highest FPPG
         <GuessCount total={this.state.attempts} correct={this.state.successfulAttempts} />
         <div className="players">
-          <PlayerPreview className="player" onSelect={() => this.selectPlayer(this.state.playerA, this.state.playerB)} value={this.state.playerA}/>
+          <PlayerPreview className="player" showFPPG={this.state.showFPPG} onSelect={() => this.selectPlayer(this.state.playerA, this.state.playerB)} value={this.state.playerA}/>
           <div className="v">
             <h1>V</h1>
           </div>
-          <PlayerPreview className="player" onSelect={() => this.selectPlayer(this.state.playerB, this.state.playerA)} value={this.state.playerB}/>
+          <PlayerPreview className="player" showFPPG={this.state.showFPPG} onSelect={() => this.selectPlayer(this.state.playerB, this.state.playerA)} value={this.state.playerB}/>
         </div>
         <button onClick={() => this.loadNewPlayers()}>Load new</button>
       </div>

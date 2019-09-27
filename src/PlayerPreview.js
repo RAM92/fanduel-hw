@@ -11,6 +11,7 @@ export default class PlayerPreview extends React.Component {
                     }}
                     src={this.props.value.images.default.url}></img>
                 <div>{this.props.value.first_name} {this.props.value.last_name}</div>
+                <div>{this.props.value.fppg}</div>
             </div>
         )
     }
