@@ -18,7 +18,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/Player.json')
+    return fetch('/Player.json')
     .then(response => response.json())
     .then(data => {
       this.setState(state => ({
